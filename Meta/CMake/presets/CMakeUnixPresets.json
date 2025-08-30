@@ -36,6 +36,13 @@
       ]
     },
     {
+      "name": "ThreadSanitizer",
+      "inherits": [
+        "unix_base",
+        "Thread_Sanitizer_base"
+      ]
+    },
+    {
       "name": "Distribution",
       "inherits": [
         "unix_base",

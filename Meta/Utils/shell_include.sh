@@ -57,6 +57,9 @@ get_build_dir() {
         "Sanitizer")
             BUILD_DIR="${LADYBIRD_SOURCE_DIR}/Build/sanitizers"
             ;;
+        "ThreadSanitizer")
+            BUILD_DIR="${LADYBIRD_SOURCE_DIR}/Build/threadsanitizers"
+            ;;
         "Distribution")
             BUILD_DIR="${LADYBIRD_SOURCE_DIR}/Build/distribution"
             ;;

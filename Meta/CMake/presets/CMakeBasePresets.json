@@ -60,6 +60,18 @@
     },
     {
       "hidden": true,
+      "name": "Thread_Sanitizer_base",
+      "displayName": "Thread Sanitizer Config",
+      "description": "Thread Sanitizer build",
+      "binaryDir": "$env{LADYBIRD_SOURCE_DIR}/Build/threadsanitizers",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "ENABLE_THREAD_SANITIZER": "ON",
+        "VCPKG_OVERLAY_TRIPLETS": "$env{LADYBIRD_SOURCE_DIR}/Meta/CMake/vcpkg/thread-sanitizer-triplets"
+      }
+    },
+    {
+      "hidden": true,
       "name": "All_Debug_base",
       "displayName": "All Debug Config",
       "description": "All Debug build",
