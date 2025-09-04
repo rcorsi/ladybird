@@ -20,13 +20,14 @@ class RWLock {
 public:
     RWLock()
     {
-        pthread_rwlock_init(&m_rwlock, nullptr);
+        auto rc = pthread_rwlock_init(&m_rwlock, nullptr);
+        VERIFY(rc == 0);
     }
 
     ~RWLock()
     {
-        VERIFY(!m_write_locked);
-        pthread_rwlock_destroy(&m_rwlock);
+        auto rc = pthread_rwlock_destroy(&m_rwlock);
+        VERIFY(rc == 0);
     }
 
     void lock_read();
@@ -36,8 +37,6 @@ public:
 
 private:
     pthread_rwlock_t m_rwlock;
-    bool m_write_locked { false };
-    bool m_read_locked_with_write_lock { false };
 };
 
 enum class LockMode {
@@ -81,28 +80,19 @@ private:
 ALWAYS_INLINE void RWLock::lock_read()
 {
     auto rc = pthread_rwlock_rdlock(&m_rwlock);
-    if (rc == EDEADLK) {
-        // We're already holding the write lock, so we can just return.
-        m_read_locked_with_write_lock = true;
-    } else {
-        VERIFY(rc == 0);
-    }
+    VERIFY(rc == 0);
 }
 
 ALWAYS_INLINE void RWLock::lock_write()
 {
     auto rc = pthread_rwlock_wrlock(&m_rwlock);
     VERIFY(rc == 0);
-    m_write_locked = true;
 }
 
 ALWAYS_INLINE void RWLock::unlock()
 {
-    m_write_locked = false;
-    auto needs_unlock = !m_read_locked_with_write_lock;
-    m_read_locked_with_write_lock = false;
-    if (needs_unlock)
-        pthread_rwlock_unlock(&m_rwlock);
+    auto rc = pthread_rwlock_unlock(&m_rwlock);
+    VERIFY(rc == 0);
 }
 
 }
