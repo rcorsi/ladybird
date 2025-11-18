@@ -48,6 +48,7 @@ public:
     static Settings& settings() { return the().m_settings; }
 
     static BrowserOptions const& browser_options() { return the().m_browser_options; }
+    static GraphicalOptions const& graphical_options() { return the().m_graphical_options; }
     static RequestServerOptions const& request_server_options() { return the().m_request_server_options; }
     static WebContentOptions& web_content_options() { return the().m_web_content_options; }
 
@@ -197,6 +198,7 @@ private:
 
     Main::Arguments m_arguments;
     BrowserOptions m_browser_options;
+    GraphicalOptions m_graphical_options;
     RequestServerOptions m_request_server_options;
     WebContentOptions m_web_content_options;
 

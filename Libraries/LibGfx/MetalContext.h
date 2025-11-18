@@ -37,5 +37,6 @@ public:
 };
 
 RefPtr<MetalContext> get_metal_context();
+void init_metal_context();
 
 }

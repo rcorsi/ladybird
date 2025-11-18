@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <LibGfx/GraphicsProcessor.h>
 #include <LibMain/Main.h>
 #include <LibWebView/Application.h>
 #include <LibWebView/BrowserProcess.h>
@@ -57,6 +58,8 @@ ErrorOr<int> ladybird_main(Main::Arguments arguments)
                 return 0;
             }
         }
+
+        Gfx::init_graphics(Ladybird::Application::graphical_options());
 
         app->on_open_file = [&](auto const& file_url) {
             auto& window = app->active_window();

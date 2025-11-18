@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "LibWebView/Options.h"
 #include <AK/Debug.h>
 #include <LibCore/ArgsParser.h>
 #include <LibCore/Environment.h>
@@ -252,6 +253,10 @@ ErrorOr<void> Application::initialize(Main::Arguments const& arguments)
                 : OptionalNone()),
         .devtools_port = devtools_port,
         .enable_content_filter = disable_content_filter ? EnableContentFilter::No : EnableContentFilter::Yes,
+    };
+
+    m_graphical_options = {
+        .force_cpu_painting = force_cpu_painting ? ForceCpuPainting::Yes : ForceCpuPainting::No,
     };
 
     if (window_width.has_value())

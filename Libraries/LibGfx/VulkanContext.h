@@ -20,6 +20,12 @@
 
 namespace Gfx {
 
+enum VulkanState {
+    VULKAN_WITH_DRM_EXTENSIONS,
+    VULKAN_WITHOUT_DRM_EXTENSIONS,
+    DONOT_USE_VULKAN,
+};
+
 struct VulkanContext {
     uint32_t api_version { VK_API_VERSION_1_0 };
     VkInstance instance { VK_NULL_HANDLE };
@@ -39,6 +45,9 @@ struct VulkanContext {
 };
 
 ErrorOr<VulkanContext> create_vulkan_context();
+bool is_vulkan_drm_extensions_available();
+bool is_vulkan_webgl_available();
+void init_vulkan_context();
 
 #    ifdef USE_VULKAN_IMAGES
 struct VulkanImage : public RefCounted<VulkanImage> {

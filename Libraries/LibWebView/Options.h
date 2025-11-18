@@ -93,6 +93,15 @@ struct BrowserOptions {
     EnableContentFilter enable_content_filter { EnableContentFilter::Yes };
 };
 
+enum class ForceCpuPainting {
+    No,
+    Yes,
+};
+
+struct GraphicalOptions {
+    ForceCpuPainting force_cpu_painting { ForceCpuPainting::No };
+};
+
 enum class HTTPDiskCacheMode {
     Disabled,
     Enabled,

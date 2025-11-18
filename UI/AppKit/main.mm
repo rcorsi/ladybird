@@ -5,6 +5,7 @@
  */
 
 #include <AK/Enumerate.h>
+#include <LibGfx/GraphicsProcessor.h>
 #include <LibMain/Main.h>
 #include <LibWebView/Application.h>
 #include <LibWebView/BrowserProcess.h>
@@ -51,6 +52,8 @@ ErrorOr<int> ladybird_main(Main::Arguments arguments)
                 return 0;
             }
         }
+
+        Gfx::init_graphics(Ladybird::Application::graphical_options());
 
         browser_process.on_new_tab = [&](auto const& raw_urls) {
             open_urls_from_client(raw_urls, WebView::NewWindow::No);
